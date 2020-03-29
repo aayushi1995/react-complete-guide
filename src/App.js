@@ -3,36 +3,74 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
-
   state = {
-    person: [
-      {name:'Aayushi', age:24, female:true },
-      {name:'Allan', age:22, female:false},
-      {name:'Anahita', age:25, female:true},
-    ]
+    persons: [
+      { name: 'Max', age: 28 },
+      { name: 'Manu', age: 29 },
+      { name: 'Stephanie', age: 26 }
+    ],
+    otherState: 'some other value'
+  };
+
+  switchNameHandler = (newname) => {
+    // console.log('Was clicked!');
+    // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
+    this.setState({
+      persons: [
+        { name: newname, age: 28 },
+        { name: 'Manu', age: 29 },
+        { name: 'Stephanie', age: 27 }
+      ]
+    });
+  };
+
+  changeNameHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: 'maximillium', age: 28 },
+        { name: event.target.value, age: 29 },
+        { name: 'Stephanie', age: 27 }
+      ]
+    });
   }
 
-  switchNameHandler = () => {
-    this.setState( {
-        person : [
-          {name:'Monikesh', age:30, female:false },
-          {name:'Namra', age:24, female:true},
-          {name:'Brandon', age:26, female:false},
-        ]
-      }
-    )
-  }
-  
   render() {
+    const style = {
+      backgroundColor: 'Orange',
+      fontSize: '14px',
+      border: '2px solid black',
+      padding: '10px',
+      cursor: 'pointer'
+    }
     return (
       <div className="App">
-       <h1>Hello, This is a react app.</h1>
-       <button onClick={this.switchNameHandler}>Click me</button>
-       <Person name={this.state.person[0].name} age={this.state.person[0].age} gender={this.state.person[0].female ? 'she' : 'he'}/>
-       <Person name={this.state.person[1].name} age={this.state.person[1].age} gender={this.state.person[1].female ? 'she' : 'he'}/>
-       <Person name={this.state.person[2].name} age={this.state.person[2].age} gender={this.state.person[2].female ? 'she' : 'he'}/>
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        {/* The below method of passing arguments is not recommended */}
+        <button 
+        style={style}
+        onClick={() => this.switchNameHandler('Maximillium')}>
+          Switch Name
+        </button>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler.bind(this, "Max")}
+          changed={this.changeNameHandler}
+        >
+          My Hobbies: Racing
+        </Person>
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+        />
       </div>
     );
+    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 

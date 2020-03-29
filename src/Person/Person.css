@@ -1,0 +1,13 @@
+.Person {
+    text-align: center;
+    box-shadow: 2px 5px 10px grey;
+    color: black;
+    width: 300px;
+    padding: 30px;
+    margin:10px auto;
+}
+
+.Person p
+{
+    word-break: break-all;
+}
