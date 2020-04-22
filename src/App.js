@@ -32,11 +32,7 @@ class App extends Component {
           <UserInput onchange={this.textChangeHandler}  />
           <UserOutput username={this.state.username}/>
           <UserOutput username={this.state.username}/>
-
         </div>
-      
-
-
       </div>
     );
   }

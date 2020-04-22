@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import { checkPropTypes } from 'prop-types';
+import React from 'react';
 
 const UserInput = (props) => {
     return(
